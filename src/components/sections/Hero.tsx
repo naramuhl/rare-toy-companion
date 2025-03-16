@@ -22,10 +22,10 @@ const Hero = () => {
             className={cn("mb-6", getAnimationClass(titleAnimation.isInView, 'fade'))}
           >
             <span className="inline-block px-3 py-1 text-xs font-medium tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-4">
-              Apresentando o Assistente de Brinquedos Raros
+              MuhlStore - Brinquedos Raros e Únicos
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-              Eleve Sua Coleção com Elegância Minimalista
+              Brinquedos Raros com História e Valor
             </h1>
           </div>
           
@@ -36,8 +36,8 @@ const Hero = () => {
               getAnimationClass(subtitleAnimation.isInView, 'slide-up')
             )}
           >
-            Um assistente belamente projetado para colecionadores de brinquedos raros que traz simplicidade, 
-            elegância e funcionalidade para gerenciar seus itens mais valiosos.
+            Descubra peças únicas e colecionáveis que contam histórias de épocas passadas.
+            Na MuhlStore, cada brinquedo é uma relíquia com personalidade própria.
           </div>
           
           <div 
@@ -48,10 +48,10 @@ const Hero = () => {
             )}
           >
             <Button size="lg" className="font-medium">
-              Começar <ArrowRight className="ml-2 h-4 w-4" />
+              Explorar Coleção <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             <Button size="lg" variant="outline" className="font-medium">
-              Saiba Mais
+              Nossa História
             </Button>
           </div>
         </div>

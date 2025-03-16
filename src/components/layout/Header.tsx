@@ -30,7 +30,12 @@ const Header = () => {
       <div className="container max-w-7xl mx-auto">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-            <span className="font-bold text-xl tracking-tight">Assistente de Brinquedos Raros</span>
+            <img 
+              src="/vintage-toy.svg" 
+              alt="MuhlStore Logo" 
+              className="w-10 h-10"
+            />
+            <span className="font-bold text-xl tracking-tight">MuhlStore</span>
           </Link>
 
           {/* Desktop Navigation */}

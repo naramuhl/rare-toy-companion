@@ -43,7 +43,7 @@ const CarrinhoResumo = () => {
   return (
     <Card className="sticky top-6">
       <CardHeader>
-        <CardTitle>Resumo do Pedido</CardTitle>
+        <CardTitle>MuhlStore - Resumo do Pedido</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         {/* Subtotal e outros valores */}
