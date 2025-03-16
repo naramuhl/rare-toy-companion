@@ -6,21 +6,21 @@ import { Star } from 'lucide-react';
 
 const testimonials = [
   {
-    quote: "This app completely transformed how I manage my collection. The attention to detail is remarkable.",
-    author: "Alex Morgan",
-    role: "Vintage Toy Collector",
+    quote: "Este aplicativo transformou completamente a forma como gerencio minha coleção. A atenção aos detalhes é notável.",
+    author: "Alexandre Moreira",
+    role: "Colecionador de Brinquedos Vintage",
     rating: 5,
   },
   {
-    quote: "The clean design and intuitive interface make cataloging my rare toys a joy rather than a chore.",
+    quote: "O design limpo e a interface intuitiva tornam a catalogação dos meus brinquedos raros um prazer em vez de uma tarefa.",
     author: "Sarah Chen",
-    role: "Action Figure Enthusiast",
+    role: "Entusiasta de Action Figures",
     rating: 5,
   },
   {
-    quote: "I appreciate the thought that went into every aspect of this app. It's functional art.",
-    author: "James Wilson",
-    role: "Collector for 15+ years",
+    quote: "Eu aprecio o pensamento que foi colocado em cada aspecto deste aplicativo. É arte funcional.",
+    author: "Tiago Wilson",
+    role: "Colecionador há mais de 15 anos",
     rating: 5,
   },
 ];
@@ -39,10 +39,10 @@ const Testimonials = () => {
           )}
         >
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-            Loved by Collectors
+            Amado por Colecionadores
           </h2>
           <p className="text-lg text-muted-foreground">
-            Hear what our community has to say about their experience.
+            Ouça o que nossa comunidade tem a dizer sobre a experiência.
           </p>
         </div>
         

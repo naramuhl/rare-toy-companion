@@ -30,7 +30,7 @@ const Header = () => {
       <div className="container max-w-7xl mx-auto">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-            <span className="font-bold text-xl tracking-tight">Rare Toy Companion</span>
+            <span className="font-bold text-xl tracking-tight">Assistente de Brinquedos Raros</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -44,7 +44,7 @@ const Header = () => {
             size="icon" 
             className="md:hidden focus:outline-none"
             onClick={toggleMenu}
-            aria-label="Toggle menu"
+            aria-label="Alternar menu"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </Button>
@@ -74,34 +74,34 @@ const NavLinks = ({ className, onClick }: { className?: string; onClick?: () => 
       className={cn("hover-lift font-medium", className)} 
       onClick={onClick}
     >
-      Home
+      Início
     </Link>
     <Link 
       to="/collection" 
       className={cn("hover-lift font-medium", className)} 
       onClick={onClick}
     >
-      Collection
+      Coleção
     </Link>
     <Link 
       to="/marketplace" 
       className={cn("hover-lift font-medium", className)} 
       onClick={onClick}
     >
-      Marketplace
+      Mercado
     </Link>
     <Link 
       to="/about" 
       className={cn("hover-lift font-medium", className)} 
       onClick={onClick}
     >
-      About
+      Sobre
     </Link>
     <Button 
       onClick={onClick}
       className="hover-lift"
     >
-      Get Started
+      Começar
     </Button>
   </>
 );

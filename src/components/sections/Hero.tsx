@@ -22,10 +22,10 @@ const Hero = () => {
             className={cn("mb-6", getAnimationClass(titleAnimation.isInView, 'fade'))}
           >
             <span className="inline-block px-3 py-1 text-xs font-medium tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-4">
-              Introducing Rare Toy Companion
+              Apresentando o Assistente de Brinquedos Raros
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-              Elevate Your Collection with Minimal Elegance
+              Eleve Sua Coleção com Elegância Minimalista
             </h1>
           </div>
           
@@ -36,8 +36,8 @@ const Hero = () => {
               getAnimationClass(subtitleAnimation.isInView, 'slide-up')
             )}
           >
-            A beautifully designed companion for rare toy collectors that brings simplicity, 
-            elegance, and functionality to managing your prized possessions.
+            Um assistente belamente projetado para colecionadores de brinquedos raros que traz simplicidade, 
+            elegância e funcionalidade para gerenciar seus itens mais valiosos.
           </div>
           
           <div 
@@ -48,10 +48,10 @@ const Hero = () => {
             )}
           >
             <Button size="lg" className="font-medium">
-              Get Started <ArrowRight className="ml-2 h-4 w-4" />
+              Começar <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             <Button size="lg" variant="outline" className="font-medium">
-              Learn More
+              Saiba Mais
             </Button>
           </div>
         </div>

@@ -7,7 +7,7 @@ import Testimonials from '@/components/sections/Testimonials';
 import CTA from '@/components/sections/CTA';
 
 const Index = () => {
-  // Scroll to top on page load
+  // Scroll para o topo ao carregar a página
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

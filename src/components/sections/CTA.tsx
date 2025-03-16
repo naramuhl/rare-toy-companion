@@ -22,18 +22,18 @@ const CTA = () => {
         
         <div className="relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-            Ready to Elevate Your Collection?
+            Pronto para Elevar Sua Coleção?
           </h2>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Join thousands of collectors who have transformed their experience with our elegant, 
-            minimal approach to collection management.
+            Junte-se a milhares de colecionadores que transformaram sua experiência com nossa abordagem 
+            elegante e minimalista para gerenciamento de coleções.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="font-medium">
-              Get Started <ArrowRight className="ml-2 h-4 w-4" />
+              Começar <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
             <Button size="lg" variant="outline" className="font-medium">
-              Contact Sales
+              Contatar Vendas
             </Button>
           </div>
         </div>

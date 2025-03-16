@@ -12,46 +12,46 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-1">
             <Link to="/" className="inline-block mb-4">
-              <span className="font-bold text-xl tracking-tight">Rare Toy Companion</span>
+              <span className="font-bold text-xl tracking-tight">Assistente de Brinquedos Raros</span>
             </Link>
             <p className="text-muted-foreground text-sm max-w-xs">
-              Your personal guide to collecting, managing, and tracking rare toys in an elegant, minimal experience.
+              Seu guia pessoal para colecionar, gerenciar e acompanhar brinquedos raros em uma experiência elegante e minimalista.
             </p>
           </div>
           
           <div>
-            <h3 className="font-medium text-sm tracking-wide mb-4 uppercase">Navigation</h3>
+            <h3 className="font-medium text-sm tracking-wide mb-4 uppercase">Navegação</h3>
             <ul className="space-y-2">
-              <FooterLink to="/">Home</FooterLink>
-              <FooterLink to="/collection">Collection</FooterLink>
-              <FooterLink to="/marketplace">Marketplace</FooterLink>
-              <FooterLink to="/about">About</FooterLink>
+              <FooterLink to="/">Início</FooterLink>
+              <FooterLink to="/collection">Coleção</FooterLink>
+              <FooterLink to="/marketplace">Mercado</FooterLink>
+              <FooterLink to="/about">Sobre</FooterLink>
             </ul>
           </div>
           
           <div>
-            <h3 className="font-medium text-sm tracking-wide mb-4 uppercase">Resources</h3>
+            <h3 className="font-medium text-sm tracking-wide mb-4 uppercase">Recursos</h3>
             <ul className="space-y-2">
-              <FooterLink to="/support">Support</FooterLink>
-              <FooterLink to="/pricing">Pricing</FooterLink>
-              <FooterLink to="/faq">FAQ</FooterLink>
-              <FooterLink to="/contact">Contact Us</FooterLink>
+              <FooterLink to="/support">Suporte</FooterLink>
+              <FooterLink to="/pricing">Preços</FooterLink>
+              <FooterLink to="/faq">Perguntas Frequentes</FooterLink>
+              <FooterLink to="/contact">Contato</FooterLink>
             </ul>
           </div>
           
           <div>
             <h3 className="font-medium text-sm tracking-wide mb-4 uppercase">Legal</h3>
             <ul className="space-y-2">
-              <FooterLink to="/privacy">Privacy Policy</FooterLink>
-              <FooterLink to="/terms">Terms of Service</FooterLink>
-              <FooterLink to="/cookies">Cookie Policy</FooterLink>
+              <FooterLink to="/privacy">Política de Privacidade</FooterLink>
+              <FooterLink to="/terms">Termos de Serviço</FooterLink>
+              <FooterLink to="/cookies">Política de Cookies</FooterLink>
             </ul>
           </div>
         </div>
         
         <div className="mt-12 pt-6 border-t border-neutral-200 dark:border-neutral-800 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
-            © {currentYear} Rare Toy Companion. All rights reserved.
+            © {currentYear} Assistente de Brinquedos Raros. Todos os direitos reservados.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <SocialLink href="https://twitter.com" aria-label="Twitter">

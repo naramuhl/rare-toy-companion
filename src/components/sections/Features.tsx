@@ -6,33 +6,33 @@ import { Search, BarChart3, Database, Shield, Zap, RefreshCw } from 'lucide-reac
 
 const features = [
   {
-    title: 'Intelligent Search',
-    description: 'Find any item in your collection instantly with our smart search capabilities.',
+    title: 'Busca Inteligente',
+    description: 'Encontre qualquer item em sua coleção instantaneamente com nossas capacidades de busca inteligente.',
     icon: Search,
   },
   {
-    title: 'Market Analytics',
-    description: 'Track market trends and price history to make informed collecting decisions.',
+    title: 'Análise de Mercado',
+    description: 'Acompanhe tendências de mercado e histórico de preços para tomar decisões informadas ao colecionar.',
     icon: BarChart3,
   },
   {
-    title: 'Secure Storage',
-    description: 'Your collection data is securely stored and backed up automatically.',
+    title: 'Armazenamento Seguro',
+    description: 'Os dados da sua coleção são armazenados com segurança e backup automático.',
     icon: Database,
   },
   {
-    title: 'Privacy Protection',
-    description: 'Control exactly who sees your collection with granular privacy settings.',
+    title: 'Proteção de Privacidade',
+    description: 'Controle exatamente quem vê sua coleção com configurações de privacidade granulares.',
     icon: Shield,
   },
   {
-    title: 'Lightning Fast',
-    description: 'Experience incredible performance with our optimized application.',
+    title: 'Rápido como um Raio',
+    description: 'Experimente um desempenho incrível com nosso aplicativo otimizado.',
     icon: Zap,
   },
   {
-    title: 'Regular Updates',
-    description: 'Enjoy new features and improvements delivered regularly.',
+    title: 'Atualizações Regulares',
+    description: 'Desfrute de novos recursos e melhorias entregues regularmente.',
     icon: RefreshCw,
   },
 ];
@@ -51,10 +51,10 @@ const Features = () => {
           )}
         >
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-            Thoughtfully Crafted Features
+            Recursos Cuidadosamente Elaborados
           </h2>
           <p className="text-lg text-muted-foreground">
-            Every detail has been considered to create a seamless experience for collectors.
+            Cada detalhe foi considerado para criar uma experiência perfeita para colecionadores.
           </p>
         </div>
         
