@@ -11,19 +11,20 @@ import { Label } from "@/components/ui/label";
 // Dados simulados para um produto específico
 const produtoMock = {
   id: '1',
-  nome: 'Boneco Astronauta Espacial',
-  preco: 89.90,
-  precoAntigo: 119.90,
-  descricao: 'Boneco astronauta com traje espacial e acessórios interativos. Ideal para crianças acima de 5 anos que adoram aventuras espaciais e exploração. Fabricado com materiais seguros e duráveis.',
+  nome: 'Boneco Woody Toy Story',
+  preco: 189.90,
+  precoAntigo: 249.90,
+  descricao: 'Boneco colecionável Woody em perfeito estado de conservação. Um item raro e com grande valor para colecionadores da franquia Toy Story.',
   categoria: 'Bonecos de Ação',
   emEstoque: true,
-  avaliacao: 4.5,
-  numAvaliacoes: 28,
-  cores: ['Branco', 'Azul', 'Prata'],
-  idadeRecomendada: '5-10 anos',
-  marca: 'BrinqueMais',
+  avaliacao: 4.8,
+  numAvaliacoes: 45,
+  cores: ['Original', 'Edição Especial'],
+  idadeRecomendada: '5+ anos',
+  marca: 'MuhlStore',
   tempoEntrega: '2-4 dias úteis',
   promocao: true,
+  imagemUrl: '/lovable-uploads/a2662bdc-7d77-41e6-bb02-befbb64670ea.png',
 };
 
 const ProdutoInfo = ({ produtoId }: { produtoId?: string }) => {
@@ -62,7 +63,7 @@ const ProdutoInfo = ({ produtoId }: { produtoId?: string }) => {
     <div className="space-y-6">
       <div className="space-y-2">
         <div className="flex justify-between items-start">
-          <h1 className="text-3xl font-bold">{produto.nome}</h1>
+          <h1 className="text-3xl font-bold text-orange-800">{produto.nome}</h1>
           <Button variant="ghost" size="icon" onClick={compartilhar}>
             <Share2 className="h-5 w-5" />
           </Button>
@@ -79,19 +80,19 @@ const ProdutoInfo = ({ produtoId }: { produtoId?: string }) => {
           </div>
           <span className="text-sm font-medium">{produto.avaliacao}</span>
           <span className="text-sm text-muted-foreground">({produto.numAvaliacoes} avaliações)</span>
-          <Badge variant="outline">{produto.categoria}</Badge>
+          <Badge variant="outline" className="bg-orange-100 text-orange-800 border-orange-200">{produto.categoria}</Badge>
         </div>
       </div>
       
       <div className="flex items-baseline gap-2">
         {produto.promocao ? (
           <>
-            <span className="text-3xl font-bold text-primary">R$ {produto.preco.toFixed(2)}</span>
+            <span className="text-3xl font-bold text-orange-600">R$ {produto.preco.toFixed(2)}</span>
             <span className="text-lg text-muted-foreground line-through">R$ {produto.precoAntigo?.toFixed(2)}</span>
             <Badge className="ml-2 bg-red-500">-{Math.round(((produto.precoAntigo! - produto.preco) / produto.precoAntigo!) * 100)}%</Badge>
           </>
         ) : (
-          <span className="text-3xl font-bold text-primary">R$ {produto.preco.toFixed(2)}</span>
+          <span className="text-3xl font-bold text-orange-600">R$ {produto.preco.toFixed(2)}</span>
         )}
       </div>
       
@@ -104,7 +105,7 @@ const ProdutoInfo = ({ produtoId }: { produtoId?: string }) => {
         </div>
         
         <div>
-          <h3 className="font-medium mb-2">Cor</h3>
+          <h3 className="font-medium mb-2">Versão</h3>
           <RadioGroup defaultValue={corSelecionada} onValueChange={setCorSelecionada} className="flex gap-2">
             {produto.cores.map(cor => (
               <div key={cor} className="flex items-center space-x-2">
@@ -123,6 +124,7 @@ const ProdutoInfo = ({ produtoId }: { produtoId?: string }) => {
               size="icon" 
               onClick={diminuirQuantidade}
               disabled={quantidade === 1}
+              className="border-orange-300 text-orange-600"
             >
               -
             </Button>
@@ -131,6 +133,7 @@ const ProdutoInfo = ({ produtoId }: { produtoId?: string }) => {
               variant="outline" 
               size="icon" 
               onClick={aumentarQuantidade}
+              className="border-orange-300 text-orange-600"
             >
               +
             </Button>
@@ -160,7 +163,7 @@ const ProdutoInfo = ({ produtoId }: { produtoId?: string }) => {
       
       <div className="flex flex-col sm:flex-row gap-3">
         <Button
-          className="flex-1"
+          className="flex-1 bg-orange-500 hover:bg-orange-600"
           onClick={adicionarAoCarrinho}
           disabled={!produto.emEstoque}
         >
@@ -170,6 +173,7 @@ const ProdutoInfo = ({ produtoId }: { produtoId?: string }) => {
         <Button
           variant="outline"
           onClick={adicionarAosFavoritos}
+          className="border-orange-300 text-orange-600 hover:bg-orange-50"
         >
           <Heart className="mr-2 h-4 w-4" />
           Adicionar aos Favoritos

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ShoppingCart } from 'lucide-react';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,12 +30,14 @@ const Header = () => {
       <div className="container max-w-7xl mx-auto">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-            <img 
-              src="/vintage-toy.svg" 
-              alt="MuhlStore Logo" 
-              className="w-10 h-10"
-            />
-            <span className="font-bold text-xl tracking-tight">MuhlStore</span>
+            <div className="flex items-center">
+              <img 
+                src="/lovable-uploads/d7baf70f-a0a0-4137-b607-9e289e56ff60.png" 
+                alt="MuhlStore Logo" 
+                className="h-10 mr-2"
+              />
+              <span className="font-bold text-xl tracking-tight text-orange-600">MuhlStore</span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -76,37 +78,38 @@ const NavLinks = ({ className, onClick }: { className?: string; onClick?: () => 
   <>
     <Link 
       to="/" 
-      className={cn("hover-lift font-medium", className)} 
+      className={cn("hover-lift font-medium text-orange-700", className)} 
       onClick={onClick}
     >
       Início
     </Link>
     <Link 
       to="/collection" 
-      className={cn("hover-lift font-medium", className)} 
+      className={cn("hover-lift font-medium text-orange-700", className)} 
       onClick={onClick}
     >
       Coleção
     </Link>
     <Link 
       to="/marketplace" 
-      className={cn("hover-lift font-medium", className)} 
+      className={cn("hover-lift font-medium text-orange-700", className)} 
       onClick={onClick}
     >
       Mercado
     </Link>
     <Link 
       to="/about" 
-      className={cn("hover-lift font-medium", className)} 
+      className={cn("hover-lift font-medium text-orange-700", className)} 
       onClick={onClick}
     >
       Sobre
     </Link>
     <Button 
       onClick={onClick}
-      className="hover-lift"
+      className="hover-lift bg-orange-500 hover:bg-orange-600"
     >
-      Começar
+      <ShoppingCart className="mr-2 h-4 w-4" />
+      Carrinho
     </Button>
   </>
 );

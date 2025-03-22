@@ -21,8 +21,8 @@ const Hero = () => {
             ref={titleAnimation.ref} 
             className={cn("mb-6", getAnimationClass(titleAnimation.isInView, 'fade'))}
           >
-            <span className="inline-block px-3 py-1 text-xs font-medium tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-4">
-              MuhlStore - Brinquedos Raros e Únicos
+            <span className="inline-block px-3 py-1 text-xs font-medium tracking-wider uppercase rounded-full bg-orange-500/10 text-orange-600 mb-4">
+              MuhlStore - Brinquedos Raros e Seminovos
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
               Brinquedos Raros com História e Valor
@@ -47,12 +47,20 @@ const Hero = () => {
               getAnimationClass(ctaAnimation.isInView, 'slide-up')
             )}
           >
-            <Button size="lg" className="font-medium">
+            <Button size="lg" className="font-medium bg-orange-500 hover:bg-orange-600">
               Explorar Coleção <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-            <Button size="lg" variant="outline" className="font-medium">
+            <Button size="lg" variant="outline" className="font-medium border-orange-500 text-orange-500 hover:bg-orange-50">
               Nossa História
             </Button>
+          </div>
+          
+          <div className="mt-12">
+            <img 
+              src="/lovable-uploads/d7baf70f-a0a0-4137-b607-9e289e56ff60.png" 
+              alt="MuhlStore - Brinquedos Raros e Seminovos" 
+              className="w-full rounded-lg shadow-lg"
+            />
           </div>
         </div>
       </div>
