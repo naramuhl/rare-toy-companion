@@ -1,9 +1,8 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Loja from "./pages/Loja";
 import ProdutoDetalhe from "./pages/ProdutoDetalhe";
@@ -13,32 +12,39 @@ import Admin from "./pages/admin/Admin";
 import Dashboard from "./pages/admin/Dashboard";
 import ProdutosAdmin from "./pages/admin/ProdutosAdmin";
 import NotFound from "./pages/NotFound";
+import Colecoes from '@/pages/Colecoes';
+import ColecaoDetalhe from '@/pages/ColecaoDetalhe';
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/loja" element={<Loja />} />
-          <Route path="/produto/:id" element={<ProdutoDetalhe />} />
-          <Route path="/carrinho" element={<Carrinho />} />
-          <Route path="/destaques" element={<Destaques />} />
-          
-          <Route path="/admin" element={<Admin />}>
-            <Route index element={<Dashboard />} />
-            <Route path="produtos" element={<ProdutosAdmin />} />
-          </Route>
-          
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <Router>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/loja" element={<Loja />} />
+            <Route path="/produto/:id" element={<ProdutoDetalhe />} />
+            <Route path="/carrinho" element={<Carrinho />} />
+            <Route path="/destaques" element={<Destaques />} />
+            
+            <Route path="/colecao" element={<Colecoes />} />
+            <Route path="/colecao/:id" element={<ColecaoDetalhe />} />
+            
+            <Route path="/admin" element={<Admin />}>
+              <Route index element={<Dashboard />} />
+              <Route path="produtos" element={<ProdutosAdmin />} />
+            </Route>
+            
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Router>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+}
 
 export default App;
