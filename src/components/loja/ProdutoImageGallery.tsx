@@ -2,7 +2,7 @@
 import React, { useState, useRef } from 'react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { cn } from '@/lib/utils';
-import { MagnifyingGlassIcon, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Search, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Imagens de brinquedos raros da MuhlStore
@@ -100,7 +100,7 @@ const ProdutoImageGallery = ({ produtoId }: { produtoId?: string }) => {
                 {/* Ícone de zoom */}
                 {!isZoomed && (
                   <div className="absolute right-2 bottom-2 bg-black/50 text-white p-1.5 rounded-full">
-                    <MagnifyingGlassIcon className="h-4 w-4" />
+                    <Search className="h-4 w-4" />
                   </div>
                 )}
               </div>
