@@ -1,83 +1,14 @@
 
 import React, { useState } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { Edit, MoreVertical, Trash2, Eye, Copy } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-
-// Dados simulados dos produtos
-const produtosAdmin = [
-  {
-    id: '1',
-    nome: 'Boneco Woody Toy Story',
-    imagemUrl: '/lovable-uploads/a2662bdc-7d77-41e6-bb02-befbb64670ea.png',
-    categoria: 'Bonecos de Ação',
-    preco: 189.90,
-    estoque: 43,
-    status: 'ativo'
-  },
-  {
-    id: '2',
-    nome: 'Coleção Hot Wheels Vintage',
-    imagemUrl: '/lovable-uploads/5f25d86c-7dd5-4ee8-a882-240f06f77054.png',
-    categoria: 'Carrinhos',
-    preco: 249.90,
-    estoque: 21,
-    status: 'ativo'
-  },
-  {
-    id: '3',
-    nome: 'Boneco Buzz Lightyear',
-    imagemUrl: '/lovable-uploads/2420466b-bbfd-4926-b8dd-5be2370f8ee1.png',
-    categoria: 'Bonecos de Ação',
-    preco: 179.90,
-    estoque: 65,
-    status: 'ativo'
-  },
-  {
-    id: '4',
-    nome: 'Barbie Vintage Anos 80',
-    imagemUrl: '/lovable-uploads/a2662bdc-7d77-41e6-bb02-befbb64670ea.png',
-    categoria: 'Bonecas',
-    preco: 299.90,
-    estoque: 12,
-    status: 'baixo_estoque'
-  },
-  {
-    id: '5',
-    nome: 'Coleção Toy Story Completa',
-    imagemUrl: '/lovable-uploads/2420466b-bbfd-4926-b8dd-5be2370f8ee1.png',
-    categoria: 'Colecionáveis',
-    preco: 459.90,
-    estoque: 38,
-    status: 'ativo'
-  },
-  {
-    id: '6',
-    nome: 'Hot Wheels Raros Anos 70',
-    imagemUrl: '/lovable-uploads/5f25d86c-7dd5-4ee8-a882-240f06f77054.png',
-    categoria: 'Carrinhos',
-    preco: 389.90,
-    estoque: 0,
-    status: 'sem_estoque'
-  },
-];
-
-const getStatusBadge = (status: string, estoque: number) => {
-  if (status === 'sem_estoque' || estoque === 0) {
-    return <Badge variant="destructive">Sem Estoque</Badge>;
-  }
-  if (status === 'baixo_estoque' || estoque <= 15) {
-    return <Badge variant="outline" className="text-amber-600 border-amber-600">Baixo Estoque</Badge>;
-  }
-  return <Badge variant="default">Ativo</Badge>;
-};
+import ProdutoItem from './ProdutoItem';
+import { produtosAdmin } from './produtosData';
+import type { Produto } from './ProdutoItem';
 
 const ListaProdutos = () => {
   const { toast } = useToast();
-  const [produtos, setProdutos] = useState(produtosAdmin);
+  const [produtos, setProdutos] = useState<Produto[]>(produtosAdmin);
   
   const excluirProduto = (id: string) => {
     toast({
@@ -149,63 +80,14 @@ const ListaProdutos = () => {
         </TableHeader>
         <TableBody>
           {produtos.map((produto) => (
-            <TableRow key={produto.id}>
-              <TableCell>
-                <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-md overflow-hidden bg-muted flex-shrink-0">
-                    <img
-                      src={produto.imagemUrl}
-                      alt={produto.nome}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <div className="font-medium">{produto.nome}</div>
-                </div>
-              </TableCell>
-              <TableCell>
-                <Badge variant="outline">{produto.categoria}</Badge>
-              </TableCell>
-              <TableCell>R$ {produto.preco.toFixed(2)}</TableCell>
-              <TableCell>
-                <div className="flex items-center gap-2">
-                  <span>{produto.estoque}</span>
-                  {getStatusBadge(produto.status, produto.estoque)}
-                </div>
-              </TableCell>
-              <TableCell className="text-right">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon">
-                      <MoreVertical className="h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuLabel>Ações</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={() => visualizarProduto(produto.id)}>
-                      <Eye className="h-4 w-4 mr-2" />
-                      Visualizar
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => editarProduto(produto.id)}>
-                      <Edit className="h-4 w-4 mr-2" />
-                      Editar
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => duplicarProduto(produto.id)}>
-                      <Copy className="h-4 w-4 mr-2" />
-                      Duplicar
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem 
-                      onClick={() => excluirProduto(produto.id)}
-                      className="text-red-600 focus:text-red-600"
-                    >
-                      <Trash2 className="h-4 w-4 mr-2" />
-                      Excluir
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </TableCell>
-            </TableRow>
+            <ProdutoItem
+              key={produto.id}
+              produto={produto}
+              onVisualizar={visualizarProduto}
+              onEditar={editarProduto}
+              onDuplicar={duplicarProduto}
+              onExcluir={excluirProduto}
+            />
           ))}
         </TableBody>
       </Table>
