@@ -1,13 +1,21 @@
 
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
 import { Badge } from '@/components/ui/badge';
 import CatalogoBrinquedos from '@/components/loja/CatalogoBrinquedos';
 import { useScrollAnimation, getAnimationClass } from '@/lib/animation';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { Separator } from '@/components/ui/separator';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 
 // Dados simulados para as coleções
 const colecoes = [
@@ -61,26 +69,63 @@ const ColecaoDetalhe = () => {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="mb-6"
+        >
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">Início</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/colecao">Coleções</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink>{colecao?.nome || 'Detalhes'}</BreadcrumbLink>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </motion.div>
+      
         {colecao ? (
           <>
             <div className="mb-8">
-              <Button 
-                variant="outline" 
-                className="mb-4"
-                onClick={() => navigate('/colecao')}
-              >
-                <ChevronLeft className="h-4 w-4 mr-1" />
-                Voltar para Coleções
-              </Button>
+              <div className="flex gap-2 mb-6">
+                <Button 
+                  variant="outline" 
+                  onClick={() => navigate('/colecao')}
+                >
+                  <ChevronLeft className="h-4 w-4 mr-1" />
+                  Voltar para Coleções
+                </Button>
+                
+                <Button 
+                  variant="outline" 
+                  onClick={() => navigate('/loja')}
+                >
+                  <ShoppingCart className="h-4 w-4 mr-1" />
+                  Ir para Loja
+                </Button>
+              </div>
               
               <div className="flex flex-col md:flex-row gap-6 items-center mb-6">
-                <div className="w-full md:w-1/3 rounded-lg overflow-hidden">
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="w-full md:w-1/3 rounded-lg overflow-hidden shadow-lg"
+                >
                   <img 
                     src={colecao.imagemUrl} 
                     alt={colecao.nome}
                     className="w-full h-auto object-cover"
                   />
-                </div>
+                </motion.div>
                 
                 <div 
                   className={`w-full md:w-2/3 space-y-4 ${getAnimationClass(animation.isInView, 'slide-up')}`}
@@ -88,6 +133,11 @@ const ColecaoDetalhe = () => {
                 >
                   <h1 className="text-3xl font-bold text-orange-800">{colecao.nome}</h1>
                   <p className="text-muted-foreground">{colecao.descricao}</p>
+                  
+                  <div className="flex items-center gap-2 text-orange-800 font-medium">
+                    <span className="text-lg">{colecao.quantidadeProdutos}</span> 
+                    <span>itens nesta coleção</span>
+                  </div>
                   
                   <div className="flex flex-wrap gap-2">
                     {colecao.tags.map(tag => (
@@ -98,10 +148,24 @@ const ColecaoDetalhe = () => {
                   </div>
                 </div>
               </div>
+              
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="bg-orange-50 p-6 rounded-lg my-8 border border-orange-100"
+              >
+                <p className="text-orange-800 italic">
+                  "Cada peça desta coleção foi selecionada com cuidado para garantir autenticidade e 
+                  preservar a história destes brinquedos icônicos. Ideal para colecionadores exigentes."
+                </p>
+              </motion.div>
             </div>
             
+            <Separator className="my-8" />
+            
             <div className="mb-8">
-              <h2 className="text-2xl font-bold mb-6">Produtos da Coleção</h2>
+              <h2 className="text-2xl font-bold mb-6 text-orange-800">Produtos da Coleção</h2>
               <CatalogoBrinquedos colecaoId={id} />
             </div>
           </>
