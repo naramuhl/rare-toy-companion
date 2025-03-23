@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Package, Gift, Star, Clock } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
 const Loja = () => {
   const [activeView, setActiveView] = useState("todos");
@@ -81,10 +82,6 @@ const Loja = () => {
       </div>
     </Layout>
   );
-};
-
-const cn = (...classes: (string | boolean | undefined)[]) => {
-  return classes.filter(Boolean).join(' ');
 };
 
 export default Loja;

@@ -18,6 +18,8 @@ const produtos = [
     imagemUrl: '/lovable-uploads/a2662bdc-7d77-41e6-bb02-befbb64670ea.png',
     emEstoque: true,
     promocao: true,
+    lancamento: false,
+    destaque: true,
     colecoes: ['toy-story', 'bonecos-acao']
   },
   {
@@ -29,6 +31,8 @@ const produtos = [
     imagemUrl: '/lovable-uploads/5f25d86c-7dd5-4ee8-a882-240f06f77054.png',
     emEstoque: true,
     promocao: false,
+    lancamento: true,
+    destaque: false,
     colecoes: ['hot-wheels', 'vintage']
   },
   {
@@ -40,6 +44,8 @@ const produtos = [
     imagemUrl: '/lovable-uploads/2420466b-bbfd-4926-b8dd-5be2370f8ee1.png',
     emEstoque: false,
     promocao: false,
+    lancamento: false,
+    destaque: true,
     colecoes: ['toy-story', 'bonecos-acao']
   },
   {
@@ -51,6 +57,8 @@ const produtos = [
     imagemUrl: '/lovable-uploads/a2662bdc-7d77-41e6-bb02-befbb64670ea.png',
     emEstoque: true,
     promocao: true,
+    lancamento: false,
+    destaque: false,
     colecoes: ['vintage']
   },
   {
@@ -62,6 +70,8 @@ const produtos = [
     imagemUrl: '/lovable-uploads/2420466b-bbfd-4926-b8dd-5be2370f8ee1.png',
     emEstoque: true,
     promocao: false,
+    lancamento: true,
+    destaque: true,
     colecoes: ['toy-story']
   },
   {
@@ -73,21 +83,40 @@ const produtos = [
     imagemUrl: '/lovable-uploads/5f25d86c-7dd5-4ee8-a882-240f06f77054.png',
     emEstoque: true,
     promocao: false,
+    lancamento: false,
+    destaque: true,
     colecoes: ['hot-wheels', 'vintage']
   },
 ];
 
 interface CatalogoBrinquedosProps {
   colecaoId?: string;
+  filtroView?: string; // Adicionando a propriedade filtroView
 }
 
-const CatalogoBrinquedos = ({ colecaoId }: CatalogoBrinquedosProps) => {
+const CatalogoBrinquedos = ({ colecaoId, filtroView = 'todos' }: CatalogoBrinquedosProps) => {
   const { toast } = useToast();
 
-  // Filtrar produtos por coleção, se necessário
-  const produtosFiltrados = colecaoId 
-    ? produtos.filter(produto => produto.colecoes.includes(colecaoId))
-    : produtos;
+  // Filtragem de produtos com base nos parâmetros
+  const produtosFiltrados = React.useMemo(() => {
+    // Primeiro filtramos por coleção, se necessário
+    let filtrados = colecaoId 
+      ? produtos.filter(produto => produto.colecoes.includes(colecaoId))
+      : produtos;
+    
+    // Depois aplicamos o filtro de view (todos, destaques, promocoes, lancamentos)
+    if (filtroView !== 'todos') {
+      if (filtroView === 'destaques') {
+        filtrados = filtrados.filter(produto => produto.destaque);
+      } else if (filtroView === 'promocoes') {
+        filtrados = filtrados.filter(produto => produto.promocao);
+      } else if (filtroView === 'lancamentos') {
+        filtrados = filtrados.filter(produto => produto.lancamento);
+      }
+    }
+    
+    return filtrados;
+  }, [colecaoId, filtroView]);
 
   const adicionarAoCarrinho = (produto: typeof produtos[0]) => {
     toast({
@@ -118,6 +147,12 @@ const CatalogoBrinquedos = ({ colecaoId }: CatalogoBrinquedosProps) => {
                   />
                   {produto.promocao && (
                     <Badge className="absolute top-2 right-2 bg-red-500">Promoção</Badge>
+                  )}
+                  {produto.lancamento && (
+                    <Badge className="absolute top-2 right-2 bg-blue-500">Lançamento</Badge>
+                  )}
+                  {produto.destaque && !produto.promocao && !produto.lancamento && (
+                    <Badge className="absolute top-2 right-2 bg-amber-500">Destaque</Badge>
                   )}
                 </div>
               </AspectRatio>
