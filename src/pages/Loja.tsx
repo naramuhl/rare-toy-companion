@@ -10,6 +10,7 @@ import { Package, Gift, Star, Clock } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import BannerToyHeroes from '@/components/sections/BannerToyHeroes';
 
 const Loja = () => {
   const [activeView, setActiveView] = useState("todos");
@@ -24,6 +25,7 @@ const Loja = () => {
 
   return (
     <Layout>
+      <BannerToyHeroes />
       <div className="container mx-auto px-4 py-8">
         <motion.div 
           initial={{ opacity: 0, y: 10 }}
