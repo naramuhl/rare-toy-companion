@@ -29,7 +29,7 @@ const BannerToyHeroes = () => {
           {/* Imagem de fundo */}
           <div className="h-64 md:h-80 lg:h-96 relative">
             <img 
-              src="/lovable-uploads/banner-toy-heroes.png" 
+              src="/lovable-uploads/da3efcfd-6148-449d-8fa9-7b7eff077683.png" 
               alt="Banner com bonecos do Mario, Luigi, Princesa e Toy Story" 
               className="w-full h-full object-cover"
             />
