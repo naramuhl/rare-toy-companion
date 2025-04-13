@@ -1,13 +1,12 @@
-
 import React, { useState, useEffect } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
 import { Search } from 'lucide-react';
 import ProdutoItem from './ProdutoItem';
 import { produtosAdmin, buscarProdutosPorNome } from './produtosData';
-import type { Produto } from './ProdutoItem';
+import { Produto } from '@/types/produto';
+import EmptyState from '../loja/EmptyState';
 
 interface ListaProdutosProps {
   busca?: string;
@@ -18,7 +17,6 @@ const ListaProdutos = ({ busca }: ListaProdutosProps) => {
   const [produtos, setProdutos] = useState<Produto[]>(produtosAdmin);
   const [termoBusca, setTermoBusca] = useState(busca || '');
   
-  // Efeito para atualizar a lista quando o termo de busca mudar
   useEffect(() => {
     if (busca !== undefined) {
       setTermoBusca(busca);
@@ -26,7 +24,6 @@ const ListaProdutos = ({ busca }: ListaProdutosProps) => {
     }
   }, [busca]);
   
-  // Função para filtrar produtos ao digitar na busca
   const handleBuscaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const valor = e.target.value;
     setTermoBusca(valor);
@@ -39,7 +36,6 @@ const ListaProdutos = ({ busca }: ListaProdutosProps) => {
       description: 'O produto foi excluído com sucesso.',
     });
     
-    // Atualizar a lista removendo o produto
     setProdutos(produtos.filter(produto => produto.id !== id));
   };
   
@@ -102,15 +98,13 @@ const ListaProdutos = ({ busca }: ListaProdutosProps) => {
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={5} className="text-center text-muted-foreground py-8">
-                  {termoBusca ? (
-                    <>
-                      <p className="font-medium">Nenhum produto encontrado</p>
-                      <p className="text-sm mt-1">Tente buscar por outro termo</p>
-                    </>
-                  ) : (
-                    <p>Nenhum produto cadastrado</p>
-                  )}
+                <TableCell colSpan={5}>
+                  <EmptyState 
+                    message={termoBusca 
+                      ? "Nenhum produto encontrado. Tente buscar por outro termo." 
+                      : "Nenhum produto cadastrado"} 
+                    className="py-8"
+                  />
                 </TableCell>
               </TableRow>
             )}

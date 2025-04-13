@@ -1,21 +1,5 @@
-
 import { ProdutoStatus } from './ProdutoStatusBadge';
-
-export interface Produto {
-  id: string;
-  nome: string;
-  imagemUrl: string;
-  categoria: string;
-  preco: number;
-  estoque: number;
-  status: string;
-  colecao?: string;
-  destaque?: boolean;
-  dataLancamento?: string;
-  origem?: string;
-  fornecedor?: string;
-  codigoBarras?: string;
-}
+import { Produto } from '@/types/produto';
 
 // Dados simulados dos produtos
 export const produtosAdmin: Produto[] = [
@@ -191,4 +175,3 @@ export const filtrarProdutosPorStatus = (status: ProdutoStatus): Produto[] => {
 export const filtrarProdutosPorOrigem = (origem: string): Produto[] => {
   return produtosAdmin.filter(produto => produto.origem === origem);
 };
-

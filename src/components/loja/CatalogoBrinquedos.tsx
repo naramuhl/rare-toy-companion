@@ -3,6 +3,7 @@ import React, { useMemo } from 'react';
 import ProdutoCard from './ProdutoCard';
 import EmptyState from './EmptyState';
 import { produtos } from './dados/produtosData';
+import { Produto } from '@/types/produto';
 
 export interface CatalogoBrinquedosProps {
   colecaoId?: string;
