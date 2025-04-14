@@ -29,8 +29,8 @@ const BannerToyHeroes = () => {
           {/* Imagem de fundo */}
           <div className="h-64 md:h-80 lg:h-96 relative">
             <img 
-              src="/lovable-uploads/da3efcfd-6148-449d-8fa9-7b7eff077683.png" 
-              alt="Banner com bonecos do Mario, Luigi, Princesa e Toy Story" 
+              src="/lovable-uploads/a2662bdc-7d77-41e6-bb02-befbb64670ea.png" 
+              alt="Bonecos colecionáveis raros e brinquedos" 
               className="w-full h-full object-cover"
             />
           </div>
@@ -46,10 +46,10 @@ const BannerToyHeroes = () => {
                   className="mb-6"
                 >
                   <h2 className="text-3xl md:text-4xl font-bold text-white drop-shadow-md">
-                    Novos Heróis na Coleção!
+                    Brinquedos Raros e Colecionáveis!
                   </h2>
                   <p className="mt-3 text-white/90 text-lg drop-shadow-md">
-                    Mario, Luigi, Princesa Peach e os personagens de Toy Story chegaram na MuhlStore!
+                    Descubra peças únicas, brinquedos novos, seminovos e itens raros que são verdadeiros tesouros!
                   </p>
                 </motion.div>
                 
@@ -60,7 +60,7 @@ const BannerToyHeroes = () => {
                 >
                   <Link to="/loja">
                     <Button size="lg" className="bg-white text-blue-700 hover:bg-blue-50">
-                      Ver Coleção <ArrowRight className="ml-2 h-4 w-4" />
+                      Explorar Coleção <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </Link>
                 </motion.div>
