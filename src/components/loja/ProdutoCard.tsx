@@ -6,20 +6,7 @@ import { ShoppingCart, Heart } from 'lucide-react';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
-
-export interface Produto {
-  id: string;
-  nome: string;
-  preco: number;
-  descricao: string;
-  categoria: string;
-  imagemUrl: string;
-  emEstoque: boolean;
-  promocao: boolean;
-  lancamento: boolean;
-  destaque: boolean;
-  colecoes: string[];
-}
+import { Produto } from '@/types/produto';
 
 interface ProdutoCardProps {
   produto: Produto;
@@ -41,6 +28,9 @@ const ProdutoCard: React.FC<ProdutoCardProps> = ({ produto }) => {
       description: `${produto.nome} foi adicionado à sua lista de desejos.`,
     });
   };
+
+  // Verificar se o produto está em estoque
+  const emEstoque = produto.emEstoque !== undefined ? produto.emEstoque : produto.estoque > 0;
 
   return (
     <Card key={produto.id} className="overflow-hidden flex flex-col">
@@ -79,10 +69,10 @@ const ProdutoCard: React.FC<ProdutoCardProps> = ({ produto }) => {
         </p>
         <div className="flex items-center">
           <Badge 
-            variant={produto.emEstoque ? "default" : "destructive"}
+            variant={emEstoque ? "default" : "destructive"}
             className="text-xs"
           >
-            {produto.emEstoque ? 'Em estoque' : 'Fora de estoque'}
+            {emEstoque ? 'Em estoque' : 'Fora de estoque'}
           </Badge>
         </div>
       </CardContent>
@@ -90,7 +80,7 @@ const ProdutoCard: React.FC<ProdutoCardProps> = ({ produto }) => {
         <Button 
           onClick={adicionarAoCarrinho} 
           className="flex-1"
-          disabled={!produto.emEstoque}
+          disabled={!emEstoque}
         >
           <ShoppingCart className="mr-2 h-4 w-4" />
           Adicionar

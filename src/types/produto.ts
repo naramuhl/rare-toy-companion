@@ -8,6 +8,7 @@ export interface Produto {
   estoque: number;
   status: string;
   colecao?: string;
+  descricao?: string;
   destaque?: boolean;
   dataLancamento?: string;
   origem?: string;
@@ -16,4 +17,5 @@ export interface Produto {
   promocao?: boolean;
   lancamento?: boolean;
   colecoes?: string[];
+  emEstoque?: boolean;
 }

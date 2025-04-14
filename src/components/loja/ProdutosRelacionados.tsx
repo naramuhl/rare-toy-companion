@@ -8,50 +8,8 @@ import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 import { ShoppingCart } from 'lucide-react';
-
-// Dados simulados para os produtos com imagens reais
-const produtos = [
-  {
-    id: '1',
-    nome: 'Boneco Woody Toy Story',
-    preco: 189.90,
-    categoria: 'Bonecos de Ação',
-    imagemUrl: '/lovable-uploads/a2662bdc-7d77-41e6-bb02-befbb64670ea.png',
-    emEstoque: true,
-    promocao: true,
-    colecoes: ['toy-story', 'bonecos-acao']
-  },
-  {
-    id: '2',
-    nome: 'Coleção Hot Wheels Vintage',
-    preco: 249.90,
-    categoria: 'Carrinhos',
-    imagemUrl: '/lovable-uploads/5f25d86c-7dd5-4ee8-a882-240f06f77054.png',
-    emEstoque: true,
-    promocao: false,
-    colecoes: ['hot-wheels', 'vintage']
-  },
-  {
-    id: '3',
-    nome: 'Boneco Buzz Lightyear',
-    preco: 179.90,
-    categoria: 'Bonecos de Ação',
-    imagemUrl: '/lovable-uploads/2420466b-bbfd-4926-b8dd-5be2370f8ee1.png',
-    emEstoque: false,
-    promocao: false,
-    colecoes: ['toy-story', 'bonecos-acao']
-  },
-  {
-    id: '4',
-    nome: 'Barbie Vintage Anos 80',
-    preco: 299.90,
-    categoria: 'Bonecas',
-    imagemUrl: '/lovable-uploads/a2662bdc-7d77-41e6-bb02-befbb64670ea.png',
-    emEstoque: true,
-    promocao: true,
-    colecoes: ['vintage']
-  }
-];
+import { produtos } from './dados/produtosData';
+import { Produto } from '@/types/produto';
 
 interface ProdutosRelacionadosProps {
   produtoId?: string;
@@ -66,10 +24,10 @@ const ProdutosRelacionados = ({ produtoId, colecaoId }: ProdutosRelacionadosProp
   const produtosRelacionados = produtoId 
     ? produtos.filter(p => p.id !== produtoId).slice(0, 6) 
     : colecaoId 
-      ? produtos.filter(p => p.colecoes.includes(colecaoId)).slice(0, 6)
+      ? produtos.filter(p => p.colecoes?.includes(colecaoId)).slice(0, 6)
       : produtos.slice(0, 6);
   
-  const adicionarAoCarrinho = (produto: typeof produtos[0]) => {
+  const adicionarAoCarrinho = (produto: Produto) => {
     toast({
       title: 'Produto adicionado!',
       description: `${produto.nome} foi adicionado ao carrinho.`,
@@ -122,11 +80,11 @@ const ProdutosRelacionados = ({ produtoId, colecaoId }: ProdutosRelacionadosProp
                 <Button 
                   size="sm"
                   className="w-full bg-orange-500 hover:bg-orange-600 text-xs"
-                  disabled={!produto.emEstoque}
+                  disabled={!(produto.emEstoque || produto.estoque > 0)}
                   onClick={() => adicionarAoCarrinho(produto)}
                 >
                   <ShoppingCart className="h-3.5 w-3.5 mr-1" />
-                  {produto.emEstoque ? 'Adicionar' : 'Indisponível'}
+                  {(produto.emEstoque || produto.estoque > 0) ? 'Adicionar' : 'Indisponível'}
                 </Button>
               </CardFooter>
             </Card>

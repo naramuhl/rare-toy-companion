@@ -18,7 +18,7 @@ const CatalogoBrinquedos: React.FC<CatalogoBrinquedosProps> = ({
   const produtosFiltrados = useMemo(() => {
     // Primeiro filtramos por coleção, se necessário
     let filtrados = colecaoId 
-      ? produtos.filter(produto => produto.colecoes.includes(colecaoId))
+      ? produtos.filter(produto => produto.colecoes?.includes(colecaoId))
       : produtos;
     
     // Depois aplicamos o filtro de view (todos, destaques, promocoes, lancamentos)
