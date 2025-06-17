@@ -137,7 +137,7 @@ const Clientes = () => {
               <TableRow>
                 <TableHead>Cliente</TableHead>
                 <TableHead>Contato</TableHead>
-                <TableHead>Data do cadastro</TableHead>
+                <TableHead>Data de cadastro</TableHead>
                 <TableHead>Pedidos</TableHead>
                 <TableHead>Valor gasto</TableHead>
                 <TableHead>Status</TableHead>
