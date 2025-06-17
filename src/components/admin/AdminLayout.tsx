@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -15,7 +14,8 @@ import {
   Settings,
   LogOut,
   Menu,
-  X
+  X,
+  MessageCircle
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
@@ -34,6 +34,7 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
     { name: 'Produtos', href: '/admin/produtos', icon: Package },
     { name: 'Pedidos', href: '/admin/pedidos', icon: ShoppingCart },
     { name: 'Clientes', href: '/admin/clientes', icon: Users },
+    { name: 'WhatsApp Grupos', href: '/admin/whatsapp-grupos', icon: MessageCircle },
     { name: 'Análises', href: '/admin/analises', icon: BarChart },
     { name: 'Fornecedores', href: '/admin/fornecedores', icon: Truck },
     { name: 'Promoções', href: '/admin/promocoes', icon: Tag },

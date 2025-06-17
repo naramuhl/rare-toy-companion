@@ -14,6 +14,7 @@ import Dashboard from "./pages/admin/Dashboard";
 import ProdutosAdmin from "./pages/admin/ProdutosAdmin";
 import Clientes from "./pages/admin/Clientes";
 import Pedidos from "./pages/admin/Pedidos";
+import WhatsAppGrupos from "./pages/admin/WhatsAppGrupos";
 import NotFound from "./pages/NotFound";
 import Colecoes from '@/pages/Colecoes';
 import ColecaoDetalhe from '@/pages/ColecaoDetalhe';
@@ -51,6 +52,7 @@ function App() {
               <Route path="produtos" element={<ProdutosAdmin />} />
               <Route path="clientes" element={<Clientes />} />
               <Route path="pedidos" element={<Pedidos />} />
+              <Route path="whatsapp-grupos" element={<WhatsAppGrupos />} />
             </Route>
             
             <Route path="*" element={<NotFound />} />
