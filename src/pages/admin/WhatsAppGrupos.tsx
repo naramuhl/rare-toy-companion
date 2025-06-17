@@ -36,11 +36,16 @@ import {
   Settings,
   BarChart3,
   TrendingUp,
+  Zap,
+  QrCode,
+  Link as LinkIcon
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
+import WhatsAppIntegration from '@/components/admin/WhatsAppIntegration';
+import GrupoMembers from '@/components/admin/GrupoMembers';
 
 // Dados simulados dos grupos
 const grupos = [
@@ -86,6 +91,7 @@ const WhatsAppGrupos = () => {
     descricao: '',
     link: ''
   });
+  const [selectedGrupo, setSelectedGrupo] = useState<string | null>(null);
 
   const handleCriarGrupo = () => {
     if (!novoGrupo.nome || !novoGrupo.link) {
@@ -101,9 +107,43 @@ const WhatsAppGrupos = () => {
     toast.success('Mensagem enviada para o grupo!');
   };
 
+  const handleGerarLink = (grupoId: string) => {
+    const link = `https://chat.whatsapp.com/convite-${grupoId}`;
+    navigator.clipboard.writeText(link);
+    toast.success('Link copiado para a área de transferência!');
+  };
+
+  const handleGerarQRCode = (grupoId: string) => {
+    toast.success('QR Code gerado! Baixando...');
+  };
+
   const totalMembros = grupos.reduce((acc, grupo) => acc + grupo.membros, 0);
   const totalVendas = grupos.reduce((acc, grupo) => acc + grupo.vendas, 0);
   const totalFaturamento = grupos.reduce((acc, grupo) => acc + grupo.faturamento, 0);
+
+  if (selectedGrupo) {
+    const grupo = grupos.find(g => g.id === selectedGrupo);
+    return (
+      <div className="p-6">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-4">
+            <Button variant="outline" onClick={() => setSelectedGrupo(null)}>
+              ← Voltar
+            </Button>
+            <div>
+              <h1 className="text-2xl font-bold">Gerenciar Grupo</h1>
+              <p className="text-muted-foreground">{grupo?.nome}</p>
+            </div>
+          </div>
+        </div>
+        
+        <GrupoMembers 
+          grupoId={selectedGrupo} 
+          grupoNome={grupo?.nome || ''} 
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="p-6">
@@ -159,6 +199,7 @@ const WhatsAppGrupos = () => {
       <Tabs defaultValue="grupos" className="space-y-4">
         <TabsList>
           <TabsTrigger value="grupos">Grupos</TabsTrigger>
+          <TabsTrigger value="integracao">Integração</TabsTrigger>
           <TabsTrigger value="mensagens">Mensagens</TabsTrigger>
           <TabsTrigger value="relatorios">Relatórios</TabsTrigger>
         </TabsList>
@@ -266,13 +307,21 @@ const WhatsAppGrupos = () => {
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
+                            <DropdownMenuItem onClick={() => setSelectedGrupo(grupo.id)}>
+                              <UserPlus className="mr-2 h-4 w-4" />
+                              Gerenciar membros
+                            </DropdownMenuItem>
                             <DropdownMenuItem onClick={() => handleEnviarMensagem(grupo.id)}>
                               <Send className="mr-2 h-4 w-4" />
                               Enviar mensagem
                             </DropdownMenuItem>
-                            <DropdownMenuItem>
-                              <UserPlus className="mr-2 h-4 w-4" />
-                              Gerenciar membros
+                            <DropdownMenuItem onClick={() => handleGerarLink(grupo.id)}>
+                              <LinkIcon className="mr-2 h-4 w-4" />
+                              Copiar link
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => handleGerarQRCode(grupo.id)}>
+                              <QrCode className="mr-2 h-4 w-4" />
+                              Gerar QR Code
                             </DropdownMenuItem>
                             <DropdownMenuItem>
                               <Settings className="mr-2 h-4 w-4" />
@@ -287,6 +336,10 @@ const WhatsAppGrupos = () => {
               </Table>
             </div>
           </div>
+        </TabsContent>
+
+        <TabsContent value="integracao" className="space-y-4">
+          <WhatsAppIntegration />
         </TabsContent>
 
         <TabsContent value="mensagens" className="space-y-4">
@@ -316,10 +369,16 @@ const WhatsAppGrupos = () => {
                   className="mt-2"
                 />
               </div>
-              <Button>
-                <Send className="mr-2 h-4 w-4" />
-                Enviar para Grupos Selecionados
-              </Button>
+              <div className="flex gap-2">
+                <Button>
+                  <Send className="mr-2 h-4 w-4" />
+                  Enviar para Grupos Selecionados
+                </Button>
+                <Button variant="outline">
+                  <Zap className="mr-2 h-4 w-4" />
+                  Agendar Envio
+                </Button>
+              </div>
             </CardContent>
           </Card>
         </TabsContent>
