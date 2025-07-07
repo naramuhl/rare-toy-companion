@@ -15,7 +15,8 @@ import {
   LogOut,
   Menu,
   X,
-  MessageCircle
+  MessageCircle,
+  Instagram
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
@@ -35,6 +36,7 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
     { name: 'Pedidos', href: '/admin/pedidos', icon: ShoppingCart },
     { name: 'Clientes', href: '/admin/clientes', icon: Users },
     { name: 'WhatsApp Grupos', href: '/admin/whatsapp-grupos', icon: MessageCircle },
+    { name: 'Instagram', href: '/admin/instagram', icon: Instagram },
     { name: 'Análises', href: '/admin/analises', icon: BarChart },
     { name: 'Fornecedores', href: '/admin/fornecedores', icon: Truck },
     { name: 'Promoções', href: '/admin/promocoes', icon: Tag },

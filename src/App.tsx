@@ -12,6 +12,7 @@ import Destaques from "./pages/Destaques";
 import Admin from "./pages/admin/Admin";
 import Dashboard from "./pages/admin/Dashboard";
 import ProdutosAdmin from "./pages/admin/ProdutosAdmin";
+import InstagramIntegracao from "./pages/admin/InstagramIntegracao";
 import Clientes from "./pages/admin/Clientes";
 import Pedidos from "./pages/admin/Pedidos";
 import WhatsAppGrupos from "./pages/admin/WhatsAppGrupos";
@@ -50,6 +51,7 @@ function App() {
             <Route path="/admin" element={<Admin />}>
               <Route index element={<Dashboard />} />
               <Route path="produtos" element={<ProdutosAdmin />} />
+              <Route path="instagram" element={<InstagramIntegracao />} />
               <Route path="clientes" element={<Clientes />} />
               <Route path="pedidos" element={<Pedidos />} />
               <Route path="whatsapp-grupos" element={<WhatsAppGrupos />} />
