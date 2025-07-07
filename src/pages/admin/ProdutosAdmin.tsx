@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, Plus, Filter, Download, Upload } from 'lucide-react';
+import { Search, Plus, Filter, Download, Upload, QrCode } from 'lucide-react';
 import { 
   DropdownMenu, 
   DropdownMenuContent, 
@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import ListaProdutos from '@/components/admin/ListaProdutos';
 import AdicionarProdutoDialog from '@/components/admin/AdicionarProdutoDialog';
+import PixManagement from '@/components/admin/PixManagement';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 
@@ -98,6 +99,7 @@ const ProdutosAdmin = () => {
           <TabsTrigger value="destaque">Destaques</TabsTrigger>
           <TabsTrigger value="estoque">Gerenciar Estoque</TabsTrigger>
           <TabsTrigger value="promocoes">Promoções</TabsTrigger>
+          <TabsTrigger value="pix">PIX</TabsTrigger>
         </TabsList>
         
         <TabsContent value="todos" className="space-y-4">
@@ -123,6 +125,13 @@ const ProdutosAdmin = () => {
             Gerencie produtos em promoção ou prepare próximas campanhas.
           </div>
           <ListaProdutos busca={termoBusca} />
+        </TabsContent>
+        
+        <TabsContent value="pix" className="space-y-4">
+          <div className="text-sm text-muted-foreground mb-4">
+            Gerencie códigos PIX, monitore transações e configure descontos.
+          </div>
+          <PixManagement />
         </TabsContent>
       </Tabs>
       
