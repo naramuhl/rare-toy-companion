@@ -104,12 +104,22 @@ const NavLinks = ({ className, onClick }: { className?: string; onClick?: () => 
     >
       Sobre
     </Link>
+    <Link 
+      to="/auth/login" 
+      className={cn("hover-lift font-medium text-orange-700", className)} 
+      onClick={onClick}
+    >
+      Login
+    </Link>
     <Button 
+      asChild
       onClick={onClick}
       className="hover-lift bg-orange-500 hover:bg-orange-600"
     >
-      <ShoppingCart className="mr-2 h-4 w-4" />
-      Carrinho
+      <Link to="/carrinho">
+        <ShoppingCart className="mr-2 h-4 w-4" />
+        Carrinho
+      </Link>
     </Button>
   </>
 );
