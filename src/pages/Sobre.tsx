@@ -51,25 +51,25 @@ const Sobre = () => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-orange-50 to-amber-50">
+      <div className="min-h-screen bg-gradient-to-br from-background to-secondary">
         {/* Hero Section */}
         <section className="py-20 px-6">
           <div className="container max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h1 className="text-5xl font-bold text-orange-800 mb-6">
+                <h1 className="text-5xl font-bold text-foreground mb-6">
                   Nossa História
                 </h1>
-                <p className="text-xl text-orange-600 mb-6 leading-relaxed">
-                  A MuhlStore nasceu do sonho de conectar pessoas através de produtos únicos e especiais. 
-                  Desde 2020, nossa missão é descobrir e compartilhar tesouros artesanais e gastronômicos 
-                  de todo o Brasil.
+                <p className="text-xl text-muted-foreground mb-6 leading-relaxed">
+                  A MuhlStore nasceu do sonho de conectar pessoas através de brinquedos únicos e especiais. 
+                  Desde 2020, nossa missão é descobrir e compartilhar tesouros de brinquedos raros 
+                  e seminovos de todo o Brasil.
                 </p>
-                <p className="text-lg text-orange-600 mb-8 leading-relaxed">
-                  Acreditamos que cada produto conta uma história, e nossa paixão é ser a ponte entre 
-                  artesãos talentosos e pessoas que valorizam a autenticidade e qualidade.
+                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                  Acreditamos que cada brinquedo conta uma história, e nossa paixão é ser a ponte entre 
+                  colecionadores e pessoas que valorizam a autenticidade e qualidade.
                 </p>
-                <Button size="lg" className="bg-orange-500 hover:bg-orange-600">
+                <Button size="lg">
                   Conheça Nossos Produtos
                 </Button>
               </div>

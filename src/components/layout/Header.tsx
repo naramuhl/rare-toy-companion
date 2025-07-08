@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Menu, X, ShoppingCart } from 'lucide-react';
+import logoImage from '@/assets/muhlstore-logo.png';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,11 +33,11 @@ const Header = () => {
           <Link to="/" className="flex items-center space-x-2">
             <div className="flex items-center">
               <img 
-                src="/lovable-uploads/d7baf70f-a0a0-4137-b607-9e289e56ff60.png" 
+                src={logoImage} 
                 alt="MuhlStore Logo" 
                 className="h-10 mr-2"
               />
-              <span className="font-bold text-xl tracking-tight text-orange-600">MuhlStore</span>
+              <span className="font-bold text-xl tracking-tight text-primary">MuhlStore</span>
             </div>
           </Link>
 
@@ -78,35 +79,35 @@ const NavLinks = ({ className, onClick }: { className?: string; onClick?: () => 
   <>
     <Link 
       to="/" 
-      className={cn("hover-lift font-medium text-orange-700", className)} 
+      className={cn("hover-lift font-medium text-foreground", className)} 
       onClick={onClick}
     >
       Início
     </Link>
     <Link 
       to="/collection" 
-      className={cn("hover-lift font-medium text-orange-700", className)} 
+      className={cn("hover-lift font-medium text-foreground", className)} 
       onClick={onClick}
     >
       Coleção
     </Link>
     <Link 
       to="/marketplace" 
-      className={cn("hover-lift font-medium text-orange-700", className)} 
+      className={cn("hover-lift font-medium text-foreground", className)} 
       onClick={onClick}
     >
       Mercado
     </Link>
     <Link 
       to="/about" 
-      className={cn("hover-lift font-medium text-orange-700", className)} 
+      className={cn("hover-lift font-medium text-foreground", className)} 
       onClick={onClick}
     >
       Sobre
     </Link>
     <Link 
       to="/auth/login" 
-      className={cn("hover-lift font-medium text-orange-700", className)} 
+      className={cn("hover-lift font-medium text-foreground", className)} 
       onClick={onClick}
     >
       Login
@@ -114,7 +115,7 @@ const NavLinks = ({ className, onClick }: { className?: string; onClick?: () => 
     <Button 
       asChild
       onClick={onClick}
-      className="hover-lift bg-orange-500 hover:bg-orange-600"
+      className="hover-lift"
     >
       <Link to="/carrinho">
         <ShoppingCart className="mr-2 h-4 w-4" />
