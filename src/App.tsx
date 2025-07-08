@@ -22,6 +22,9 @@ import ColecaoDetalhe from '@/pages/ColecaoDetalhe';
 import Login from './pages/auth/Login';
 import Cadastro from './pages/auth/Cadastro';
 import MinhaConta from './pages/cliente/MinhaConta';
+import Colecao from './pages/Colecao';
+import Mercado from './pages/Mercado';
+import Sobre from './pages/Sobre';
 
 const queryClient = new QueryClient();
 
@@ -41,6 +44,9 @@ function App() {
             
             <Route path="/colecao" element={<Colecoes />} />
             <Route path="/colecao/:id" element={<ColecaoDetalhe />} />
+            <Route path="/collection" element={<Colecao />} />
+            <Route path="/marketplace" element={<Mercado />} />
+            <Route path="/about" element={<Sobre />} />
             
             {/* Rotas de autenticação e conta do cliente */}
             <Route path="/auth/login" element={<Login />} />
