@@ -3,7 +3,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { useScrollAnimation, getAnimationClass } from '@/lib/animation';
 import { ArrowRight } from 'lucide-react';
-import heroImage from '@/assets/hero-vintage-toys.jpg';
+import heroImage from '@/assets/mario-starwars-hero.jpg';
 
 const Hero = () => {
   const titleAnimation = useScrollAnimation();
@@ -23,10 +23,10 @@ const Hero = () => {
             className={cn("mb-6", getAnimationClass(titleAnimation.isInView, 'fade'))}
           >
             <span className="inline-block px-3 py-1 text-xs font-medium tracking-wider uppercase rounded-full bg-primary/10 text-primary mb-4">
-              MuhlStore - Brinquedos Raros e Seminovos
+              MuhlStore - Coleção Mario Bros Star Wars
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
-              Brinquedos Raros com História e Valor
+              Mario, Luigi e Princesa na Galáxia Muito, Muito Distante
             </h1>
           </div>
           
@@ -37,8 +37,8 @@ const Hero = () => {
               getAnimationClass(subtitleAnimation.isInView, 'slide-up')
             )}
           >
-            Descubra peças únicas e colecionáveis que contam histórias de épocas passadas.
-            Na MuhlStore, cada brinquedo é uma relíquia com personalidade própria.
+            Explore a coleção mais épica do universo! Mario Bros encontra Star Wars em figuras raríssimas e seminovas.
+            Jedis do Reino dos Cogumelos e Princesas Rebeldes aguardam por você!
           </div>
           
           <div 
@@ -59,7 +59,7 @@ const Hero = () => {
           <div className="mt-12">
             <img 
               src={heroImage} 
-              alt="MuhlStore - Brinquedos Raros e Seminovos" 
+              alt="MuhlStore - Mario Bros Star Wars Collection" 
               className="w-full rounded-lg shadow-lg"
             />
           </div>

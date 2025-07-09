@@ -6,6 +6,7 @@ import { useScrollAnimation, getAnimationClass } from '@/lib/animation';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import bannerImage from '@/assets/mario-starwars-banner.jpg';
 
 const BannerToyHeroes = () => {
   const bannerAnimation = useScrollAnimation();
@@ -29,8 +30,8 @@ const BannerToyHeroes = () => {
           {/* Imagem de fundo */}
           <div className="h-64 md:h-80 lg:h-96 relative">
             <img 
-              src="/lovable-uploads/a2662bdc-7d77-41e6-bb02-befbb64670ea.png" 
-              alt="Bonecos colecionáveis raros e brinquedos" 
+              src={bannerImage} 
+              alt="Mario Bros Star Wars Action Figures Collection" 
               className="w-full h-full object-cover"
             />
           </div>
@@ -46,10 +47,10 @@ const BannerToyHeroes = () => {
                   className="mb-6"
                 >
                   <h2 className="text-3xl md:text-4xl font-bold text-white drop-shadow-md">
-                    Brinquedos Raros e Colecionáveis!
+                    Heróis da Galáxia dos Cogumelos!
                   </h2>
                   <p className="mt-3 text-white/90 text-lg drop-shadow-md">
-                    Descubra peças únicas, brinquedos novos, seminovos e itens raros que são verdadeiros tesouros!
+                    Mario Jedi, Luigi Rebelde e Princesa Leia Peach! Action figures raras do crossover mais épico da história!
                   </p>
                 </motion.div>
                 

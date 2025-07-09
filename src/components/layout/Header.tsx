@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Menu, X, ShoppingCart } from 'lucide-react';
-import logoImage from '@/assets/muhlstore-logo.png';
+import logoImage from '@/assets/muhlstore-mario-starwars-logo.png';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,7 +37,7 @@ const Header = () => {
                 alt="MuhlStore Logo" 
                 className="h-10 mr-2"
               />
-              <span className="font-bold text-xl tracking-tight text-primary">MuhlStore</span>
+              <span className="font-bold text-xl tracking-tight text-primary">MuhlStore Galaxy</span>
             </div>
           </Link>
 
