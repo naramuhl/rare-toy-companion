@@ -16,6 +16,7 @@ import InstagramIntegracao from "./pages/admin/InstagramIntegracao";
 import Clientes from "./pages/admin/Clientes";
 import Pedidos from "./pages/admin/Pedidos";
 import WhatsAppGrupos from "./pages/admin/WhatsAppGrupos";
+import HomeConfig from "./pages/admin/HomeConfig";
 import NotFound from "./pages/NotFound";
 import Colecoes from '@/pages/Colecoes';
 import ColecaoDetalhe from '@/pages/ColecaoDetalhe';
@@ -60,6 +61,7 @@ function App() {
               <Route path="instagram" element={<InstagramIntegracao />} />
               <Route path="clientes" element={<Clientes />} />
               <Route path="pedidos" element={<Pedidos />} />
+              <Route path="home-config" element={<HomeConfig />} />
               <Route path="whatsapp-grupos" element={<WhatsAppGrupos />} />
             </Route>
             

@@ -35,6 +35,7 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
     { name: 'Produtos', href: '/admin/produtos', icon: Package },
     { name: 'Pedidos', href: '/admin/pedidos', icon: ShoppingCart },
     { name: 'Clientes', href: '/admin/clientes', icon: Users },
+    { name: 'Home Config', href: '/admin/home-config', icon: Settings },
     { name: 'WhatsApp Grupos', href: '/admin/whatsapp-grupos', icon: MessageCircle },
     { name: 'Instagram', href: '/admin/instagram', icon: Instagram },
     { name: 'Análises', href: '/admin/analises', icon: BarChart },
