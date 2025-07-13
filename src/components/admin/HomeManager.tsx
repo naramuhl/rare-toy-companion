@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { 
   Plus, 
   Trash2, 
@@ -17,9 +18,12 @@ import {
   Palette, 
   Image as ImageIcon,
   Save,
-  RotateCcw
+  RotateCcw,
+  Copy,
+  Settings
 } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import ImageUpload from './ImageUpload';
 
 interface CarouselItem {
   id: string;
@@ -86,6 +90,7 @@ const HomeManager = () => {
   // Estados de edição
   const [editingItem, setEditingItem] = useState<CarouselItem | null>(null);
   const [newItem, setNewItem] = useState<Partial<CarouselItem>>({});
+  const [showEditDialog, setShowEditDialog] = useState(false);
 
   const badgeOptions = ['Exclusivo', 'Novo', 'Limitado', 'Popular', 'Em Destaque'];
 
@@ -141,6 +146,40 @@ const HomeManager = () => {
     setCarouselItems(carouselItems.map(item => 
       item.id === id ? { ...item, ativo: !item.ativo } : item
     ));
+  };
+
+  const handleEditItem = (item: CarouselItem) => {
+    setEditingItem(item);
+    setShowEditDialog(true);
+  };
+
+  const handleUpdateItem = () => {
+    if (editingItem) {
+      setCarouselItems(carouselItems.map(item => 
+        item.id === editingItem.id ? editingItem : item
+      ));
+      setEditingItem(null);
+      setShowEditDialog(false);
+      toast({
+        title: "Produto atualizado",
+        description: "As alterações foram salvas com sucesso.",
+      });
+    }
+  };
+
+  const handleDuplicateItem = (item: CarouselItem) => {
+    const duplicatedItem: CarouselItem = {
+      ...item,
+      id: Date.now().toString(),
+      nome: `${item.nome} (Cópia)`,
+      ativo: false
+    };
+    
+    setCarouselItems([...carouselItems, duplicatedItem]);
+    toast({
+      title: "Produto duplicado",
+      description: "Uma cópia do produto foi criada.",
+    });
   };
 
   return (
@@ -216,13 +255,12 @@ const HomeManager = () => {
                   </Select>
                 </div>
 
-                <div>
-                  <Label htmlFor="imagem">URL da Imagem</Label>
-                  <Input
-                    id="imagem"
+                <div className="md:col-span-2">
+                  <ImageUpload
                     value={newItem.imagem || ''}
-                    onChange={(e) => setNewItem({ ...newItem, imagem: e.target.value })}
-                    placeholder="Ex: /src/assets/produto.jpg"
+                    onChange={(imageUrl) => setNewItem({ ...newItem, imagem: imageUrl })}
+                    label="Imagem do Produto"
+                    placeholder="URL da imagem ou faça upload"
                   />
                 </div>
 
@@ -297,8 +335,19 @@ const HomeManager = () => {
                         checked={item.ativo}
                         onCheckedChange={() => handleToggleItem(item.id)}
                       />
-                      <Button variant="outline" size="sm">
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => handleEditItem(item)}
+                      >
                         <Edit className="w-4 h-4" />
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => handleDuplicateItem(item)}
+                      >
+                        <Copy className="w-4 h-4" />
                       </Button>
                       <Button 
                         variant="outline" 
@@ -406,46 +455,35 @@ const HomeManager = () => {
                   </Select>
                 </div>
 
-                <div>
-                  <Label htmlFor="heroBackground">
-                    {themeConfig.backgroundType === 'image' ? 'URL da Imagem' : 'CSS Background'}
-                  </Label>
-                  <Input
-                    id="heroBackground"
+                {themeConfig.backgroundType === 'image' ? (
+                  <ImageUpload
                     value={themeConfig.heroBackground}
-                    onChange={(e) => setThemeConfig({ ...themeConfig, heroBackground: e.target.value })}
-                    placeholder={
-                      themeConfig.backgroundType === 'image' 
-                        ? '/src/assets/hero-bg.jpg'
-                        : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-                    }
+                    onChange={(imageUrl) => setThemeConfig({ ...themeConfig, heroBackground: imageUrl })}
+                    label="Imagem de Background"
+                    placeholder="URL da imagem de fundo ou faça upload"
                   />
-                </div>
+                ) : (
+                  <div>
+                    <Label htmlFor="heroBackground">CSS Background</Label>
+                    <Input
+                      id="heroBackground"
+                      value={themeConfig.heroBackground}
+                      onChange={(e) => setThemeConfig({ ...themeConfig, heroBackground: e.target.value })}
+                      placeholder="linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+                    />
+                  </div>
+                )}
               </div>
 
               {/* Logo */}
               <div className="space-y-4">
                 <h3 className="text-lg font-medium">Logo</h3>
-                <div>
-                  <Label htmlFor="logoUrl">URL do Logo</Label>
-                  <Input
-                    id="logoUrl"
-                    value={themeConfig.logoUrl}
-                    onChange={(e) => setThemeConfig({ ...themeConfig, logoUrl: e.target.value })}
-                    placeholder="/src/assets/logo.png"
-                  />
-                </div>
-                
-                {themeConfig.logoUrl && (
-                  <div className="p-4 border rounded-lg">
-                    <p className="text-sm text-muted-foreground mb-2">Preview:</p>
-                    <img 
-                      src={themeConfig.logoUrl} 
-                      alt="Logo preview"
-                      className="h-12 object-contain"
-                    />
-                  </div>
-                )}
+                <ImageUpload
+                  value={themeConfig.logoUrl}
+                  onChange={(logoUrl) => setThemeConfig({ ...themeConfig, logoUrl })}
+                  label="Logo da Loja"
+                  placeholder="URL do logo ou faça upload"
+                />
               </div>
 
               <div className="flex gap-2">
@@ -462,6 +500,115 @@ const HomeManager = () => {
           </Card>
         </TabsContent>
       </Tabs>
+
+      {/* Dialog de Edição */}
+      <Dialog open={showEditDialog} onOpenChange={setShowEditDialog}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Editar Produto</DialogTitle>
+          </DialogHeader>
+          
+          {editingItem && (
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="edit-nome">Nome do Produto</Label>
+                  <Input
+                    id="edit-nome"
+                    value={editingItem.nome}
+                    onChange={(e) => setEditingItem({ ...editingItem, nome: e.target.value })}
+                  />
+                </div>
+                
+                <div>
+                  <Label htmlFor="edit-preco">Preço</Label>
+                  <Input
+                    id="edit-preco"
+                    value={editingItem.preco}
+                    onChange={(e) => setEditingItem({ ...editingItem, preco: e.target.value })}
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="edit-precoOriginal">Preço Original</Label>
+                  <Input
+                    id="edit-precoOriginal"
+                    value={editingItem.precoOriginal || ''}
+                    onChange={(e) => setEditingItem({ ...editingItem, precoOriginal: e.target.value })}
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="edit-badge">Badge</Label>
+                  <Select 
+                    value={editingItem.badge} 
+                    onValueChange={(value) => setEditingItem({ ...editingItem, badge: value })}
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {badgeOptions.map((badge) => (
+                        <SelectItem key={badge} value={badge}>{badge}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="md:col-span-2">
+                  <ImageUpload
+                    value={editingItem.imagem}
+                    onChange={(imageUrl) => setEditingItem({ ...editingItem, imagem: imageUrl })}
+                    label="Imagem do Produto"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="edit-avaliacao">Avaliação (1-5)</Label>
+                  <Input
+                    id="edit-avaliacao"
+                    type="number"
+                    min="1"
+                    max="5"
+                    step="0.1"
+                    value={editingItem.avaliacao}
+                    onChange={(e) => setEditingItem({ ...editingItem, avaliacao: parseFloat(e.target.value) })}
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="edit-vendidos">Quantidade Vendida</Label>
+                  <Input
+                    id="edit-vendidos"
+                    type="number"
+                    value={editingItem.vendidos}
+                    onChange={(e) => setEditingItem({ ...editingItem, vendidos: parseInt(e.target.value) })}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <Label htmlFor="edit-descricao">Descrição</Label>
+                <Textarea
+                  id="edit-descricao"
+                  value={editingItem.descricao}
+                  onChange={(e) => setEditingItem({ ...editingItem, descricao: e.target.value })}
+                />
+              </div>
+
+              <div className="flex justify-end gap-2">
+                <Button variant="outline" onClick={() => setShowEditDialog(false)}>
+                  Cancelar
+                </Button>
+                <Button onClick={handleUpdateItem}>
+                  <Save className="w-4 h-4 mr-2" />
+                  Salvar Alterações
+                </Button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
