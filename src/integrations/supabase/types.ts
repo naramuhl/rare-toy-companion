@@ -14,7 +14,189 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      carousel_items: {
+        Row: {
+          active: boolean | null
+          button_link: string | null
+          button_text: string | null
+          created_at: string
+          id: string
+          image_url: string
+          order_index: number
+          subtitle: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean | null
+          button_link?: string | null
+          button_text?: string | null
+          created_at?: string
+          id?: string
+          image_url: string
+          order_index?: number
+          subtitle?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean | null
+          button_link?: string | null
+          button_text?: string | null
+          created_at?: string
+          id?: string
+          image_url?: string
+          order_index?: number
+          subtitle?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      collections: {
+        Row: {
+          created_at: string
+          descricao: string | null
+          id: string
+          imagem_url: string | null
+          nome: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          descricao?: string | null
+          id?: string
+          imagem_url?: string | null
+          nome: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          descricao?: string | null
+          id?: string
+          imagem_url?: string | null
+          nome?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      product_collections: {
+        Row: {
+          collection_id: string
+          created_at: string
+          id: string
+          product_id: string
+        }
+        Insert: {
+          collection_id: string
+          created_at?: string
+          id?: string
+          product_id: string
+        }
+        Update: {
+          collection_id?: string
+          created_at?: string
+          id?: string
+          product_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_collections_collection_id_fkey"
+            columns: ["collection_id"]
+            isOneToOne: false
+            referencedRelation: "collections"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "product_collections_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      products: {
+        Row: {
+          avaliacao: number | null
+          categoria: string
+          codigo_barras: string | null
+          created_at: string
+          data_lancamento: string | null
+          descricao: string | null
+          destaque: boolean | null
+          dimensoes: string | null
+          estoque: number
+          faixa_etaria: string | null
+          fornecedor: string | null
+          id: string
+          imagem_url: string | null
+          lancamento: boolean | null
+          marca: string | null
+          material: string | null
+          nome: string
+          origem: string | null
+          peso: string | null
+          preco: number
+          promocao: boolean | null
+          status: string
+          total_avaliacoes: number | null
+          updated_at: string
+        }
+        Insert: {
+          avaliacao?: number | null
+          categoria: string
+          codigo_barras?: string | null
+          created_at?: string
+          data_lancamento?: string | null
+          descricao?: string | null
+          destaque?: boolean | null
+          dimensoes?: string | null
+          estoque?: number
+          faixa_etaria?: string | null
+          fornecedor?: string | null
+          id?: string
+          imagem_url?: string | null
+          lancamento?: boolean | null
+          marca?: string | null
+          material?: string | null
+          nome: string
+          origem?: string | null
+          peso?: string | null
+          preco: number
+          promocao?: boolean | null
+          status?: string
+          total_avaliacoes?: number | null
+          updated_at?: string
+        }
+        Update: {
+          avaliacao?: number | null
+          categoria?: string
+          codigo_barras?: string | null
+          created_at?: string
+          data_lancamento?: string | null
+          descricao?: string | null
+          destaque?: boolean | null
+          dimensoes?: string | null
+          estoque?: number
+          faixa_etaria?: string | null
+          fornecedor?: string | null
+          id?: string
+          imagem_url?: string | null
+          lancamento?: boolean | null
+          marca?: string | null
+          material?: string | null
+          nome?: string
+          origem?: string | null
+          peso?: string | null
+          preco?: number
+          promocao?: boolean | null
+          status?: string
+          total_avaliacoes?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

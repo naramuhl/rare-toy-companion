@@ -5,10 +5,11 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
 import { ShoppingCart } from 'lucide-react';
-import { produtos } from './dados/produtosData';
+import { useRelatedProducts, useProductsByCollection } from '@/hooks/useProducts';
 import { Produto } from '@/types/produto';
 
 interface ProdutosRelacionadosProps {
@@ -20,12 +21,16 @@ const ProdutosRelacionados = ({ produtoId, colecaoId }: ProdutosRelacionadosProp
   const navigate = useNavigate();
   const { toast } = useToast();
   
-  // Filtrar produtos relacionados com base na coleção ou categoria do produto atual
-  const produtosRelacionados = produtoId 
-    ? produtos.filter(p => p.id !== produtoId).slice(0, 6) 
+  // Use appropriate hook based on what we have
+  const relatedByProduct = useRelatedProducts(produtoId || '', 6);
+  const relatedByCollection = useProductsByCollection(colecaoId || '');
+  
+  // Choose the right data source
+  const { products: produtosRelacionados, loading, error } = produtoId 
+    ? relatedByProduct
     : colecaoId 
-      ? produtos.filter(p => p.colecoes?.includes(colecaoId)).slice(0, 6)
-      : produtos.slice(0, 6);
+    ? { ...relatedByCollection, products: relatedByCollection.products.slice(0, 6) }
+    : { products: [], loading: false, error: null };
   
   const adicionarAoCarrinho = (produto: Produto) => {
     toast({
@@ -37,6 +42,38 @@ const ProdutosRelacionados = ({ produtoId, colecaoId }: ProdutosRelacionadosProp
   const verProduto = (id: string) => {
     navigate(`/produto/${id}`);
   };
+
+  if (loading) {
+    return (
+      <ScrollArea>
+        <div className="flex space-x-4 pb-4">
+          {Array.from({ length: 4 }).map((_, index) => (
+            <Card key={index} className="flex-shrink-0 w-[260px] overflow-hidden">
+              <Skeleton className="h-48 w-full" />
+              <CardContent className="p-3">
+                <Skeleton className="h-4 w-3/4 mb-2" />
+                <Skeleton className="h-4 w-1/2" />
+              </CardContent>
+              <CardFooter className="p-3 pt-0">
+                <Skeleton className="h-8 w-full" />
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+        <ScrollBar orientation="horizontal" />
+      </ScrollArea>
+    );
+  }
+
+  if (error) {
+    return (
+      <Card className="p-4">
+        <div className="text-muted-foreground text-center">
+          {error}
+        </div>
+      </Card>
+    );
+  }
 
   return (
     <ScrollArea>
